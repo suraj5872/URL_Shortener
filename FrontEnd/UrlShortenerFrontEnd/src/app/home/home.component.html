@@ -1,0 +1,70 @@
+<div class="container mt-4">
+
+    <!-- Form for creating a short URL -->
+    <form (ngSubmit)="createShortUrl()" #createForm="ngForm" class="mb-4">
+      <div class="mb-3">
+        <label for="longUrl" class="form-label">Enter URL to Shorten:</label>
+        <input type="url" id="longUrl" name="longUrl" [(ngModel)]="url.longUrl" class="form-control" required />
+      </div>
+      <button type="submit" class="btn btn-primary">Create Short URL</button>
+    </form>
+
+    <!-- Show Short URL Creation Details -->
+    <div *ngIf="shortUrl" class="alert alert-success mb-4">
+      <h3>Short URL Created:</h3>
+      <p><strong>Original URL:</strong> {{ shortUrl.url }}</p>
+      <p><strong>Short Code:</strong> {{ shortUrl.shortCode }}</p>
+      <p><strong>Created At:</strong> {{ shortUrl.createdAt | date:'short' }}</p>
+    </div>
+
+    <!-- Form for retrieving the original URL from a short code -->
+    <form (ngSubmit)="getOriginalUrl()" #retrieveForm="ngForm" class="mb-4">
+      <div class="mb-3">
+        <label for="shortCodeRetrieve" class="form-label">Enter Short Code:</label>
+        <input type="text" id="shortCodeRetrieve" name="shortCodeRetrieve" [(ngModel)]="url.shortCodeRetrieve" class="form-control" required />
+      </div>
+      <button type="submit" class="btn btn-success">Retrieve Original URL</button>
+    </form>
+
+    <!-- Show Original URL -->
+    <div *ngIf="originalUrl" class="alert alert-info mb-4">
+      <h3>Original URL Retrieved:</h3>
+      <p>{{ originalUrl.url }}</p>
+    </div>
+
+    <!-- Form for updating the short URL -->
+    <form (ngSubmit)="updateShortUrl()" #updateForm="ngForm" class="mb-4">
+      <div class="mb-3">
+        <label for="updateUrl" class="form-label">New URL for Update:</label>
+        <input type="url" id="updateUrl" name="updateUrl" [(ngModel)]="url.newUrl" class="form-control" required />
+      </div>
+      <button type="submit" class="btn btn-warning">Update Short URL</button>
+    </form>
+
+    <!-- Form for deleting the short URL -->
+    <form (ngSubmit)="deleteShortUrl()" #deleteForm="ngForm" class="mb-4">
+      <div class="mb-3">
+        <label for="deleteShortCode" class="form-label">Short Code to Delete:</label>
+        <input type="text" id="deleteShortCode" name="deleteShortCode" [(ngModel)]="url.deleteShortCode" class="form-control" required />
+      </div>
+      <button type="submit" class="btn btn-danger">Delete Short URL</button>
+    </form>
+
+    <!-- Form for getting statistics -->
+    <form (ngSubmit)="getStatistics()" #statsForm="ngForm" class="mb-4">
+      <div class="mb-3">
+        <label for="statsShortCode" class="form-label">Enter Short Code for Stats:</label>
+        <input type="text" id="statsShortCode" name="statsShortCode" [(ngModel)]="url.statsShortCode" class="form-control" required />
+      </div>
+      <button type="submit" class="btn btn-info">Get URL Statistics</button>
+    </form>
+
+    <!-- Show URL Statistics -->
+    <div *ngIf="urlStats" class="alert alert-secondary mb-4">
+      <h3>URL Statistics:</h3>
+      <p><strong>Original URL:</strong> {{ urlStats.url }}</p>
+      <p><strong>Access Count:</strong> {{ urlStats.accessCount }}</p>
+      <p><strong>Created At:</strong> {{ urlStats.createdAt | date:'short' }}</p>
+      <p><strong>Last Updated:</strong> {{ urlStats.updatedAt | date:'short' }}</p>
+    </div>
+</div>
