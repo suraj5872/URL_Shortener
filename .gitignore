@@ -4,6 +4,10 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+
+!**/src/main/**/**/*.yaml
+!**/src/test/**/**/*.yaml
+
 ### STS ###
 .apt_generated
 .classpath
